@@ -1,6 +1,7 @@
 var likeSubmit = {
+    
 	submit: function(path, params, method) { 
-		method = method || "post"; // Set method to post by default if not specified.
+		method = method || "post";
 		params = (function() {
 			switch (typeof params) {
 				case 'string':
@@ -12,8 +13,7 @@ var likeSubmit = {
 					throw new Error('Wrong data type');
 			}
 		}());
-		// The rest of this code assumes you are not using a library.
-		// It can be made less wordy if you use one.
+		
 		var form = document.createElement("form");
 		form.setAttribute("method", method);
 		form.setAttribute("action", path);
@@ -35,7 +35,6 @@ var likeSubmit = {
 
 	paramToObject: function (query) {
 		var pairs, i, keyValuePair, key, value, map = {};
-		// remove leading question mark if its there
 		if (query.slice(0, 1) === '?') {
 			query = query.slice(1);
 		}
