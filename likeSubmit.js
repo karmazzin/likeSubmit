@@ -1,10 +1,10 @@
-var submitHelper = {
-	likeSubmit: function(path, params, method) {
+var likeSubmit = {
+	submit: function(path, params, method) { 
 		method = method || "post"; // Set method to post by default if not specified.
 		params = (function() {
 			switch (typeof params) {
 				case 'string':
-					return submitHelper.paramToObject(params);
+					return likeSubmit.paramToObject(params);
 					break;
 				case 'object':
 					return params;
