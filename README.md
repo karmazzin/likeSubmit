@@ -16,7 +16,7 @@ var param2 = {
 likeSubmit.submit('login', param2); //аналогично отправке формы авторизации
 ```
 ##Methods:
-function(path, params, method)
+submit(path, params, method)
 * path: string - устанавливает адрес, по которому отправляется запрос (аналогично action в форме)
 * params: string | object - принимает сериализованную строку или объект для отправки
 * method: string - устанавливает метод для отправки, по-умолчанию 'POST'
