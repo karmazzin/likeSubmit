@@ -1,4 +1,5 @@
 var likeSubmit = (function() {
+	
 	var paramToObject = function (query) {
 		var pairs, i, keyValuePair, key, value, map = {};
 		if (query.slice(0, 1) === '?') {
