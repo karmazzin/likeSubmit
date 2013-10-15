@@ -1,39 +1,5 @@
-var likeSubmit = {
-    
-	submit: function(path, params, method) { 
-		method = method || "post";
-		params = (function() {
-			switch (typeof params) {
-				case 'string':
-					return likeSubmit.paramToObject(params);
-					break;
-				case 'object':
-					return params;
-				default:
-					throw new Error('Wrong data type');
-			}
-		}());
-		
-		var form = document.createElement("form");
-		form.setAttribute("method", method);
-		form.setAttribute("action", path);
-
-		for(var key in params) {
-			if(params.hasOwnProperty(key)) {
-				var hiddenField = document.createElement("input");
-				hiddenField.setAttribute("type", "hidden");
-				hiddenField.setAttribute("name", key);
-				hiddenField.setAttribute("value", params[key]);
-
-				form.appendChild(hiddenField);
-			}
-		}
-
-		document.body.appendChild(form);
-		form.submit();
-	},
-
-	paramToObject: function (query) {
+var likeSubmit = (function() {
+	var paramToObject = function (query) {
 		var pairs, i, keyValuePair, key, value, map = {};
 		if (query.slice(0, 1) === '?') {
 			query = query.slice(1);
@@ -48,5 +14,41 @@ var likeSubmit = {
 			}
 		}
 		return map;
+	};
+	
+	return {
+		submit: function(path, params, method) { 
+
+    		method = method || "post";
+    		params = (function() {
+    			switch (typeof params) {
+    				case 'string':
+    					return paramToObject(params);
+    					break;
+    				case 'object':
+    					return params;
+    				default:
+    					throw new Error('Wrong data type');
+    			}
+    		}());
+    		
+    		var form = document.createElement("form");
+    		form.setAttribute("method", method);
+    		form.setAttribute("action", path);
+    
+    		for(var key in params) {
+    			if(params.hasOwnProperty(key)) {
+    				var hiddenField = document.createElement("input");
+    				hiddenField.setAttribute("type", "hidden");
+    				hiddenField.setAttribute("name", key);
+    				hiddenField.setAttribute("value", params[key]);
+    
+    				form.appendChild(hiddenField);
+    			}
+    		}
+    
+    		document.body.appendChild(form);
+    		form.submit();
+    	}	
 	}
-}
+})();
